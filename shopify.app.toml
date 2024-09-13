@@ -1,0 +1,49 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "ceb3cf4a79ead6d9b1b117d1b80533e1"
+name = "Navidium Shipping Protection"
+handle = "navidium-shipping-protection"
+application_url = "https://app.navidiumapp.com/install.php"
+embedded = false
+
+[build]
+dev_store_url = "nvd-himtest.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://app.navidiumapp.com/generate-token.php",
+  "https://app.navidiumapp.com/generate-missing-token.php",
+  "https://app.navidiumapp.com/dashboard/plans.php",
+  "https://app.navidiumapp.com/dashboard/index.php",
+  "https://app.navidiumapp.com/order/index.php",
+  "https://app.navidiumapp.com/new-token.php",
+  "https://app.navidiumapp.com/generate-token-new.php",
+  "https://app.navidiumapp.com/uninstall/index.php",
+  "https://app.navidiumapp.com/api/check-monthly-orders-from-api.php",
+  "https://navidiumapp.net/dashboard/plans.php",
+  "https://navidiumapp.net/install.php",
+  "https://app.navidiumapp.com/update-app-token.php",
+  "https://app.navidiumapp.com/bumps-dashboard/update-bumps-app-token.php"
+]
+
+[webhooks]
+api_version = "2023-04"
+
+  [[webhooks.subscriptions]]
+  uri = "https://app.navidiumapp.com/customer-data-erasure.php"
+  compliance_topics = [ "customers/redact" ]
+
+  [[webhooks.subscriptions]]
+  uri = "https://app.navidiumapp.com/customer-data-request.php"
+  compliance_topics = [ "customers/data_request" ]
+
+  [[webhooks.subscriptions]]
+  uri = "https://app.navidiumapp.com/shop-data-erasure.php"
+  compliance_topics = [ "shop/redact" ]
+
+[pos]
+embedded = false
