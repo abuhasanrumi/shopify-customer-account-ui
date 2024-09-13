@@ -35,8 +35,6 @@ function FullPageExtension() {
   const { navigation, extension, i18n } = useApi()
   const [currentStep, setCurrentStep] = useState(1)
 
-console.log("navigation", navigation?.currentEntry?.url?.replace("'extension:/shopify/Order/", ""))
-
   const [checkedProducts, setCheckedProducts] = useState([])
   const [shippingIssue, setShippingIssue] = useState('')
   const [issueDetails, setIssueDetails] = useState({
@@ -44,7 +42,6 @@ console.log("navigation", navigation?.currentEntry?.url?.replace("'extension:/sh
     links: []
   })
   const [receiveOption, setReceiveOption] = useState('')
-
 
   return (
     <>
@@ -55,7 +52,12 @@ console.log("navigation", navigation?.currentEntry?.url?.replace("'extension:/sh
           <Button
             accessibilityLabel='Button'
             onPress={() =>
-              navigation.navigate(`shopify:customer-account/orders/${orderId}`)
+              navigation.navigate(
+                `shopify:customer-account/orders/${navigation?.currentEntry?.url?.replace(
+                  'extension:/shopify/Order/',
+                  ''
+                )}`
+              )
             }
           />
         }>
